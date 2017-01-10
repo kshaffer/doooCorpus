@@ -1,5 +1,5 @@
 # doooCorpus
-A corpus study of articles about Domain of One's Own.
+A corpus study of articles about Domain of One's Own. Includes a Python script for web scraping from a variety of blog/article sources, a Python script for converting manually downloaded content, and an R script for analyzing and visualizing downloaded data. Also contains a pre-loaded collection of scraped and cleaned data.
 
 ## `build_db.py`
 
