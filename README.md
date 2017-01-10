@@ -1,6 +1,13 @@
 # doooCorpus
 A corpus study of articles about Domain of One's Own. Includes a Python script for web scraping from a variety of blog/article sources, a Python script for converting manually downloaded content, and an R script for analyzing and visualizing downloaded data. Also contains a pre-loaded collection of scraped and cleaned data.
 
+Blog posts based on the findings in this corpus study can be found at:
+
+- [Domain of One’s Own: A Corpus Study, Part 1 – Words and Voices](http://umwdtlt.com/domain-of-ones-own-a-corpus-study-part-1-words-and-voices/)  
+- Domain of One’s Own: A Corpus Study, Part 2 – Bigrams and Changing Trends (link forthcoming)  
+- Domain of One’s Own: A Corpus Study, Part 3 – Sentiment Analysis (link forthcoming)  
+- Domain of One’s Own: A Corpus Study, Part 4 – Topic Model (link forthcoming)  
+
 ## `build_db.py`
 
 This Python script scrapes the URLs in `url_list` and uses Beautiful Soup to parse their content for title, author, date, and main article text. Saves to `dooo_scraped.csv`. The resulting CSV file will need some manual cleanup before mining and analyzing with `dooo_tidy_analysis.R`.
