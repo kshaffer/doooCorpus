@@ -135,6 +135,7 @@ umw_authors <- c('Jim Groom',
                  'Gardner Campbell',
                  'Laura Moyer',
                  'Brynn Boyer')
+
 umw_corpus <- dooo_no_stop %>%
   filter(author %in% umw_authors)
 
@@ -466,6 +467,32 @@ words_by_time <- dooo_tidy %>%
   rename(count = n) %>%
   filter(word_total > 30)
 
+words_by_time_reclaimers <- dooo_tidy %>%
+  filter(author %in% c('Jim Groom', 'Tim Owens')) %>%
+  mutate(time_floor = floor_date(date, unit = "1 month")) %>%
+  count(time_floor, word) %>%
+  ungroup() %>%
+  group_by(time_floor) %>%
+  mutate(time_total = sum(n)) %>%
+  group_by(word) %>%
+  mutate(word_total = sum(n)) %>%
+  ungroup() %>%
+  rename(count = n) %>%
+  filter(word_total > 30)
+
+words_by_time_no_reclaimers <- dooo_tidy %>%
+  filter(!author %in% c('Jim Groom', 'Tim Owens')) %>%
+  mutate(time_floor = floor_date(date, unit = "1 month")) %>%
+  count(time_floor, word) %>%
+  ungroup() %>%
+  group_by(time_floor) %>%
+  mutate(time_total = sum(n)) %>%
+  group_by(word) %>%
+  mutate(word_total = sum(n)) %>%
+  ungroup() %>%
+  rename(count = n) %>%
+  filter(word_total > 30)
+
 words_by_time_grouped <- dooo_tidy %>%
   mutate(time_floor = floor_date(date, unit = "1 month"),
          umw = (author %in% umw_authors)) %>%
@@ -488,6 +515,20 @@ words_by_time %>%
 
 words_by_time %>%
   filter(word %in% c('umw', 'washington', 'ou', 'davidson', 'oklahoma', 'emory')) %>%
+  ggplot(aes(time_floor, count/time_total, color = word)) +
+  geom_line(alpha = 0.8, size = 1.3) +
+  labs(x = NULL, 
+       y = 'Word frequency')
+
+words_by_time_reclaimers %>%
+  filter(word %in% c('reclaim', 'create')) %>%
+  ggplot(aes(time_floor, count/time_total, color = word)) +
+  geom_line(alpha = 0.8, size = 1.3) +
+  labs(x = NULL, 
+       y = 'Word frequency')
+
+words_by_time_no_reclaimers %>%
+  filter(word %in% c('reclaim', 'create')) %>%
   ggplot(aes(time_floor, count/time_total, color = word)) +
   geom_line(alpha = 0.8, size = 1.3) +
   labs(x = NULL, 
