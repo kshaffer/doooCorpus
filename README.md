@@ -1,12 +1,12 @@
-# doooCorpus
+[# doooCorpus
 A corpus study of articles about Domain of One's Own. Includes a Python script for web scraping from a variety of blog/article sources, a Python script for converting manually downloaded content, and an R script for analyzing and visualizing downloaded data. Also contains a pre-loaded collection of scraped and cleaned data.
 
 Blog posts based on the findings in this corpus study can be found at:
 
 - [Domain of One’s Own: A Corpus Study, Part 1 – Words and Voices](http://umwdtlt.com/domain-of-ones-own-a-corpus-study-part-1-words-and-voices/)  
-- Domain of One’s Own: A Corpus Study, Part 2 – Bigrams and Changing Trends (link forthcoming)  
-- Domain of One’s Own: A Corpus Study, Part 3 – Sentiment Analysis (link forthcoming)  
-- Domain of One’s Own: A Corpus Study, Part 4 – Topic Model (link forthcoming)  
+- [Domain of One’s Own: A Corpus Study, Part 2 – Bigrams and Changing Trends](http://umwdtlt.com/domain-of-ones-own-a-corpus-study-part-2-bigrams-and-changing-trends/)  
+- [Domain of One’s Own: A Corpus Study, Part 3 – Sentiment Analysis](http://umwdtlt.com/domain-of-ones-own-a-corpus-study-part-3-sentiment-analysis/)  
+- [Domain of One’s Own: A Corpus Study, Part 4 – Topic Model](http://umwdtlt.com/domain-of-ones-own-a-corpus-study-part-4-topic-model/)  
 
 ## `build_db.py`
 
