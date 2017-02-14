@@ -291,7 +291,7 @@ dooo_bigrams %>%
   count(bigram, sort = TRUE) %>%
   filter(n > 30) %>%
   mutate(bigram = reorder(bigram, n)) %>%
-  ggplot(aes(bigram, n)) +
+  ggplot(aes(bigram, n, fill = bigram)) +
     geom_bar(alpha = 0.8, stat = "identity", show.legend = FALSE) +
     ylab('count') +
     coord_flip()
