@@ -10,6 +10,8 @@ library(wordcloud)
 library(lubridate)
 library(tm)
 library(topicmodels)
+library(igraph)
+library(ggraph)
 
 # import and tidy scraped text, fix dates to be real dates
 # tokenize by word
@@ -293,6 +295,28 @@ dooo_bigrams %>%
     geom_bar(alpha = 0.8, stat = "identity", show.legend = FALSE) +
     ylab('count') +
     coord_flip()
+
+# network graph
+bigram_count <- dooo_bigrams %>%
+  count(bigram, sort = TRUE) %>%
+  mutate(bigram = reorder(bigram, n)) %>%
+  separate(bigram, c('from', 'to'), sep = ' ')
+
+bigram_graph <- bigram_count %>%
+  filter(n >= 15) %>%
+  graph_from_data_frame()
+
+set.seed(2017)
+
+a <- grid::arrow(type = 'closed', length = unit(.1, 'inches'))
+
+ggraph(bigram_graph, layout = 'fr') +
+  geom_edge_link(aes(edge_alpha = n), show.legend = FALSE, arrow = a) +
+  geom_node_point(color = 'lightblue', size = 3) +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1) +
+  theme_void() +
+  ggtitle('Network of two-word phrases in the DoOO corpus')
+
 
 #umw authors only
 dooo_bigrams %>%
